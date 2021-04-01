@@ -74,20 +74,3 @@ const readfunc = new Promise ((resolve,reject) => {
     }
      
     readfunc.then((data) =>console.log(Thief(data)));
-
-    // console.log(Thief());
-
-
-
-
-
-    // const promiseA = new Promise( (resolve,reject) => {
-    //     resolve (123);
-    // });
-    // // At this point, "promiseA" is already settled.
-    // promiseA.then( (val) => console.log("asynchronous logging has val:",val) );
-    // console.log("immediate logging");
-    
-    // // produces output in this order:
-    // // immediate logging
-    // // asynchronous logging has val: 777
