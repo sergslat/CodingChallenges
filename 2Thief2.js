@@ -1,46 +1,33 @@
-// const { resolve } = require('node:path');
 const readline = require('readline');
 
-const readfunc = new Promise ((resolve,reject) => {
+    const readfunc = new Promise ((resolve,reject) => {
 
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
+    
+        let arr=[];
+        let mat=[];
+    
+        rl.on('line', (input) => {
+        
+        let splitAns=input.split(" ");
+        arr.push(parseInt(splitAns[0]))
+        arr.push(parseInt(splitAns[1]))
+        mat.push(arr)
+        arr=[];
+    
+      });
+    
+      rl.on('close', () =>{
+          
+        
+        resolve(mat);
+          
+      })
+    
     });
-
-    let arr=[];
-    let mat=[];
-
-    rl.on('line', (input) => {
-    
-    let splitAns=input.split(" ");
-    arr.push(parseInt(splitAns[0]))
-    arr.push(parseInt(splitAns[1]))
-    mat.push(arr)
-    arr=[];
-
-  });
-
-  rl.on('close', () =>{
-      
-    
-    resolve(mat);
-      
-  })
-
-});
-
-
-
-// const printmatrix =  () =>{
-
-//     readfunc.then((data) => console.log(data));
-// }
-
-// printmatrix(); 
-
-
-
 
     const Thief = (in1) =>{
         
@@ -58,13 +45,12 @@ const readfunc = new Promise ((resolve,reject) => {
                 }
             }
             if (in1 [i][1] == grams){
-                // console.log(i)
                 profit.push(in1 [i][0])
                 
             }
             
         }
-        // console.log(profit.length)
+        
         if(profit.length){
             return (Math.max(...profit))
         } else {        return ('Got caught!') }
@@ -72,5 +58,15 @@ const readfunc = new Promise ((resolve,reject) => {
 
         
     }
-     
-    readfunc.then((data) =>console.log(Thief(data)));
+    
+    const outputResult = async() =>{
+
+        const data = await readfunc;
+        
+        console.log(Thief(data));
+
+    }
+
+    outputResult();
+   
+
